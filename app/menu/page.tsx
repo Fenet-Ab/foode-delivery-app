@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import FoodCard from '@/app/components/FoodCard/page';
+import { useSearch } from "@/app/contexts/SearchContext";
 
 const dishes = [
   {
@@ -71,10 +72,18 @@ const categories = [
 
 const MenuPage = () => {
   const [activeCategory, setActiveCategory] = useState('All');
+  const { searchQuery } = useSearch();
+
+  const filteredBySearch = searchQuery.trim() === '' 
+    ? dishes 
+    : dishes.filter(d => 
+        d.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+        d.category.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
   const filteredDishes = activeCategory === 'All' 
-    ? dishes 
-    : dishes.filter(d => d.category === activeCategory);
+    ? filteredBySearch 
+    : filteredBySearch.filter(d => d.category === activeCategory);
 
   return (
     <div className="min-h-screen bg-[#FDFCFB]">
@@ -119,11 +128,19 @@ const MenuPage = () => {
 
       {/* Dishes Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-32">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {filteredDishes.map((dish) => (
-            <FoodCard key={dish.id} dish={dish} />
-          ))}
-        </div>
+        {filteredDishes.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {filteredDishes.map((dish) => (
+              <FoodCard key={dish.id} dish={dish} />
+            ))}
+          </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center py-20 text-center">
+            <div className="text-4xl mb-4">🔍</div>
+            <h3 className="text-xl font-black text-gray-900 uppercase">No results found</h3>
+            <p className="text-gray-400 text-sm mt-2">Try searching for something else or explore our categories.</p>
+          </div>
+        )}
       </div>
     </div>
   );

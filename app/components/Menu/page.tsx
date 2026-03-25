@@ -2,10 +2,11 @@
 
 import React, { useState } from 'react';
 import FoodCard from '@/app/components/FoodCard/page';
+import { useSearch } from "@/app/contexts/SearchContext";
 
 const Menu = () => {
     const [activeCategory, setActiveCategory] = useState('All');
-    const [searchQuery, setSearchQuery] = useState('');
+    const { searchQuery, setSearchQuery } = useSearch();
 
     const categories = [
         { name: 'All', icon: '🍽️' },
@@ -99,7 +100,7 @@ const Menu = () => {
                             placeholder="What are you craving today?" 
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-3xl text-sm focus:outline-none focus:ring-4 focus:ring-primary-orange/10 focus:bg-white focus:border-primary-orange/30 transition-all font-medium"
+                            className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-3xl text-sm text-gray-900 font-bold focus:outline-none focus:ring-4 focus:ring-primary-orange/10 focus:bg-white focus:border-primary-orange/30 transition-all placeholder:text-gray-400"
                         />
                         <svg className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary-orange transition-colors" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                     </div>

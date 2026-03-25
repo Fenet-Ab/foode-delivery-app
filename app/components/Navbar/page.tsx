@@ -1,47 +1,51 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSearch } from "@/app/contexts/SearchContext";
 
 const Navbar = () => {
-  return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-xl border-b border-orange-100 shadow-sm transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+    const { setSearchQuery } = useSearch();
 
-          {/* Left Section: Logo & Location */}
-          <div className="flex items-center gap-8">
-            <Link href="/" className="flex items-center gap-2 group shrink-0">
-              <div className="relative overflow-hidden rounded-2xl shadow-lg shadow-primary-orange/20 ring-1 ring-primary-orange/10 group-hover:ring-primary-orange/30 transition-all duration-300">
-                <Image
-                  src="/logo.png"
-                  alt="FoodApp Logo"
-                  width={46}
-                  height={46}
-                  className="transform group-hover:scale-110 transition-transform duration-500"
-                />
-              </div>
+    return (
+        <nav className="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-xl border-b border-orange-100 shadow-sm transition-all duration-300">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex items-center justify-between h-20">
 
-            </Link>
+                    {/* Left Section: Logo & Location */}
+                    <div className="flex items-center gap-8">
+                        <Link href="/" className="flex items-center gap-2 group shrink-0">
+                            <div className="relative overflow-hidden rounded-2xl shadow-lg shadow-primary-orange/20 ring-1 ring-primary-orange/10 group-hover:ring-primary-orange/30 transition-all duration-300">
+                                <Image
+                                    src="/logo.png"
+                                    alt="FoodApp Logo"
+                                    width={46}
+                                    height={46}
+                                    className="transform group-hover:scale-110 transition-transform duration-500"
+                                />
+                            </div>
+                        </Link>
 
-            {/* Location Picker (Muted for Desktop) */}
-            <div className="hidden lg:flex items-center gap-2 px-4 py-2 bg-orange-50/50 rounded-full border border-orange-100/50 cursor-pointer hover:bg-orange-100/50 transition-all group">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary-orange group-hover:animate-bounce"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>
-              <Link href="/" className="text-sm font-bold text-gray-600 hover:text-primary-orange transition-colors">Home</Link>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400"><path d="m6 9 6 6 6-6" /></svg>
-            </div>
-          </div>
+                        <div className="hidden lg:flex items-center gap-2 px-4 py-2 bg-orange-50/50 rounded-full border border-orange-100/50 cursor-pointer hover:bg-orange-100/50 transition-all group">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary-orange group-hover:animate-bounce"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>
+                            <Link href="/" className="text-sm font-bold text-gray-600 hover:text-primary-orange transition-colors">Home</Link>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400"><path d="m6 9 6 6 6-6" /></svg>
+                        </div>
+                    </div>
 
-          {/* Center Section: Search Bar (Desktop) */}
-          <div className="hidden md:flex flex-1 max-w-lg mx-8">
-            <div className="relative w-full group">
-              <input
-                type="text"
-                placeholder="Search for your favorite food..."
-                className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-100 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-orange/20 focus:bg-white focus:border-primary-orange/30 transition-all placeholder:text-gray-400"
-              />
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary-orange transition-colors"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
-            </div>
-          </div>
+                    {/* Center Section: Search Bar (Desktop) */}
+                    <div className="hidden md:flex flex-1 max-w-lg mx-8">
+                        <div className="relative w-full group">
+                            <input
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                type="text"
+                                placeholder="Search for your favorite food..."
+                                className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-100 rounded-2xl text-sm text-gray-900 font-bold focus:outline-none focus:ring-2 focus:ring-primary-orange/20 focus:bg-white focus:border-primary-orange/30 transition-all placeholder:text-gray-400"
+                            />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary-orange transition-colors"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
+                        </div>
+                    </div>
 
           {/* Right Section: Navigation & Actions */}
           <div className="flex items-center gap-3 sm:gap-6">

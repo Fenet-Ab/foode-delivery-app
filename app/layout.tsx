@@ -13,11 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 import Navbar from "@/app/components/Navbar/page";
-
-export const metadata: Metadata = {
-  title: "FoodSwift | Fast & Fresh Delivery",
-  description: "Get your favorite meals delivered fast and fresh with FoodSwift.",
-};
+import { SearchProvider } from "@/app/contexts/SearchContext";
 
 export default function RootLayout({
   children,
@@ -25,13 +21,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col pt-20">
-        <Navbar />
-        <main className="flex-1">{children}</main>
+        <SearchProvider>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+        </SearchProvider>
       </body>
     </html>
   );
