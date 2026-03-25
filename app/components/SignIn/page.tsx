@@ -1,15 +1,26 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
-const AuthPage = () => {
+const AuthContent = () => {
+    const searchParams = useSearchParams();
+    const mode = searchParams.get('mode');
     const [isLogin, setIsLogin] = useState(true);
+
+    useEffect(() => {
+        if (mode === 'register') {
+            setIsLogin(false);
+        } else if (mode === 'login') {
+            setIsLogin(true);
+        }
+    }, [mode]);
 
     return (
         <div className="min-h-screen bg-[#FDFCFB] flex items-center justify-center p-4 md:p-8 font-sans">
-            <div className="max-w-6xl w-full bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] overflow-hidden flex flex-col md:flex-row min-h-[700px] border border-gray-100 relative">
+            <div className={`max-w-6xl w-full bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] overflow-hidden flex flex-col ${isLogin ? 'md:flex-row' : 'md:flex-row-reverse'} min-h-[700px] border border-gray-100 relative transition-all duration-700`}>
                 
                 {/* Back to Home Button (Universal) */}
                 <div className="absolute top-8 left-8 z-50 md:hidden">
@@ -20,10 +31,10 @@ const AuthPage = () => {
                     </Link>
                 </div>
 
-                {/* Image Side (Left on Desktop) */}
+                {/* Image Side (Left on Login, Right on Register) */}
                 <div className="hidden md:block md:w-1/2 relative overflow-hidden group">
                     <Image 
-                        src="/auth_bg.png" 
+                        src={isLogin ? "/auth_bg.png" : "/register_bg.png"} 
                         alt="Delicious Food" 
                         fill 
                         className="object-cover transition-transform duration-1000 group-hover:scale-110"
@@ -44,7 +55,7 @@ const AuthPage = () => {
                     </div>
                 </div>
 
-                {/* Form Side (Right on Desktop) */}
+                {/* Form Side (Right on Login, Left on Register) */}
                 <div className="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center relative bg-white">
                     <div className="max-w-md w-full mx-auto">
                         <div className="mb-12">
@@ -160,6 +171,14 @@ const AuthPage = () => {
                 }
             `}</style>
         </div>
+    );
+};
+
+const AuthPage = () => {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-[#FDFCFB] flex items-center justify-center">Loading...</div>}>
+            <AuthContent />
+        </Suspense>
     );
 };
 

@@ -26,7 +26,7 @@ const Navbar = () => {
             {/* Location Picker (Muted for Desktop) */}
             <div className="hidden lg:flex items-center gap-2 px-4 py-2 bg-orange-50/50 rounded-full border border-orange-100/50 cursor-pointer hover:bg-orange-100/50 transition-all group">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary-orange group-hover:animate-bounce"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>
-              <span className="text-sm font-semibold text-gray-700">Home</span>
+              <Link href="/" className="text-sm font-bold text-gray-600 hover:text-primary-orange transition-colors">Home</Link>
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400"><path d="m6 9 6 6 6-6" /></svg>
             </div>
           </div>
@@ -48,12 +48,15 @@ const Navbar = () => {
 
             {/* Desktop Nav Links */}
             <nav className="hidden lg:flex items-center gap-8 mr-4">
+
               <Link href="/menu" className="text-sm font-bold text-gray-600 hover:text-primary-orange transition-colors">Menu</Link>
-              <Link href="/offers" className="relative text-sm font-bold text-gray-600 hover:text-primary-orange transition-colors">
+              {/* <Link href="/offers" className="relative text-sm font-bold text-gray-600 hover:text-primary-orange transition-colors">
                 Offers
                 <span className="absolute -top-1 -right-2 h-2 w-2 bg-red-500 rounded-full animate-ping"></span>
                 <span className="absolute -top-1 -right-2 h-2 w-2 bg-red-500 rounded-full"></span>
-              </Link>
+              </Link> */}
+
+              <Link href="/about" className="text-sm font-bold text-gray-600 hover:text-primary-orange transition-colors">About</Link>
             </nav>
 
             {/* Cart Button */}
@@ -66,12 +69,12 @@ const Navbar = () => {
 
             {/* User Account / Profile */}
             <div className="flex items-center gap-4 pl-2 border-l border-gray-100">
-              <button className="hidden sm:block text-sm font-black text-gray-700 hover:text-primary-orange transition-colors px-2">
+              <Link href="/components/SignIn?mode=login" className="hidden sm:block text-sm font-black text-gray-700 hover:text-primary-orange transition-colors px-2">
                 Sign In
-              </button>
-              <button className="px-6 py-3 bg-primary-orange text-white text-sm font-black rounded-2xl shadow-xl shadow-primary-orange/30 hover:bg-secondary-orange hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 uppercase tracking-wider">
+              </Link>
+              <Link href="/components/SignIn?mode=register" className="px-6 py-3 bg-primary-orange text-white text-sm font-black rounded-2xl shadow-xl shadow-primary-orange/30 hover:bg-secondary-orange hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 uppercase tracking-wider">
                 Register
-              </button>
+              </Link>
             </div>
 
             {/* Mobile Menu Icon */}

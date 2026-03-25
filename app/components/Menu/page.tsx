@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import Image from 'next/image';
+import FoodCard from '@/app/components/FoodCard/page';
 
 const Menu = () => {
     const [activeCategory, setActiveCategory] = useState('All');
@@ -124,45 +124,10 @@ const Menu = () => {
                 </div>
 
                 {/* Food Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
                     {filteredItems.length > 0 ? (
                         filteredItems.map((item) => (
-                            <div key={item.id} className="group relative bg-[#FDFCFB] rounded-[2.5rem] border border-gray-100 overflow-hidden hover:shadow-2xl hover:shadow-primary-orange/5 transition-all duration-500 hover:-translate-y-2">
-                                {/* Image Container */}
-                                <div className="relative h-64 w-full overflow-hidden p-4">
-                                   <div className="relative h-full w-full rounded-[2rem] overflow-hidden shadow-inner">
-                                      <Image 
-                                        src={item.image} 
-                                        alt={item.name} 
-                                        fill 
-                                        className="object-cover group-hover:scale-110 transition-transform duration-700"
-                                      />
-                                      {/* Rating Badge */}
-                                      <div className="absolute top-4 right-4 px-3 py-1 bg-white/90 backdrop-blur-md rounded-full text-xs font-black shadow-lg flex items-center gap-1">
-                                         <span className="text-primary-orange">★</span> {item.rating}
-                                      </div>
-                                   </div>
-                                </div>
-
-                                {/* Content */}
-                                <div className="px-8 pb-8 flex flex-col gap-4">
-                                   <div className="flex justify-between items-start gap-2">
-                                      <div className="flex flex-col">
-                                         <h3 className="text-xl font-black text-gray-900 group-hover:text-primary-orange transition-colors uppercase italic">{item.name}</h3>
-                                         <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">{item.category}</span>
-                                      </div>
-                                      <span className="text-2xl font-black text-primary-orange tracking-tighter">${item.price.toFixed(2)}</span>
-                                   </div>
-
-                                   <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">
-                                      {item.description}
-                                   </p>
-
-                                   <button className="mt-2 w-full py-4 bg-gray-900 text-white rounded-2xl font-black uppercase text-xs tracking-[0.2em] shadow-xl hover:bg-primary-orange transition-all duration-300 active:scale-95 group-hover:shadow-primary-orange/20">
-                                      Add to Basket
-                                   </button>
-                                </div>
-                            </div>
+                            <FoodCard key={item.id} dish={item as any} />
                         ))
                     ) : (
                         <div className="col-span-full py-20 text-center flex flex-col items-center gap-4">

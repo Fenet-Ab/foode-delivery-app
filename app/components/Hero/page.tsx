@@ -48,10 +48,20 @@ const Hero = () => {
                     <div className="hidden lg:flex items-center gap-6 mt-8">
                         <div className="flex -space-x-4">
                             <div className="w-12 h-12 rounded-full border-4 border-white bg-gray-200 overflow-hidden relative">
-                                <Image src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100" alt="user" fill />
+                                <Image
+                                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100"
+                                    alt="user"
+                                    fill
+                                    sizes="48px"
+                                />
                             </div>
                             <div className="w-12 h-12 rounded-full border-4 border-white bg-gray-200 overflow-hidden relative">
-                                <Image src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100" alt="user" fill />
+                                <Image
+                                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100"
+                                    alt="user"
+                                    fill
+                                    sizes="48px"
+                                />
                             </div>
                             <div className="w-12 h-12 rounded-full border-4 border-white bg-gray-200 overflow-hidden flex items-center justify-center text-[10px] font-bold text-gray-500 bg-white">
                                 +500
@@ -72,29 +82,53 @@ const Hero = () => {
                     {/* Item 1: Hero Rice (The Anchor) */}
                     <div className="absolute top-[10%] right-[0%] z-30 group animate-float-slow">
                         <div className="w-64 h-64 md:w-80 md:h-80 rounded-full border-[10px] border-white shadow-2xl overflow-hidden relative ring-1 ring-gray-100 transform group-hover:rotate-6 transition-all duration-500">
-                            <Image src="/hero_rice.png" alt="Special Rice" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                            <Image
+                                src="/hero_rice.png"
+                                alt="Special Rice"
+                                fill
+                                sizes="(min-width: 1024px) 320px, 256px"
+                                className="object-cover group-hover:scale-110 transition-transform duration-700"
+                            />
                         </div>
                         <div className="absolute -top-4 -right-4 bg-primary-orange text-white px-5 py-2 rounded-xl text-xs font-black uppercase shadow-lg">Popular</div>
                     </div>
 
                     {/* Item 2: Shiro (The Middleweight) */}
                     <div className="absolute top-[40%] left-[0%] md:left-[10%] z-20 group animate-float">
-                        <div className="w-48 h-48 md:w-60 md:h-60 rounded-full border-[8px] border-white shadow-2xl overflow-hidden ring-1 ring-gray-100 transform group-hover:-rotate-12 transition-all duration-500">
-                            <Image src="/shiro.png" alt="Traditional Shiro" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                        <div className="w-48 h-48 md:w-60 md:h-60 rounded-full border-[8px] border-white shadow-2xl overflow-hidden relative ring-1 ring-gray-100 transform group-hover:-rotate-12 transition-all duration-500">
+                            <Image
+                                src="/shiro.png"
+                                alt="Traditional Shiro"
+                                fill
+                                sizes="(min-width: 1024px) 240px, 192px"
+                                className="object-cover group-hover:scale-110 transition-transform duration-700"
+                            />
                         </div>
                     </div>
 
                     {/* Item 3: Coffee (High Energy) */}
                     <div className="absolute bottom-[5%] right-[15%] z-40 group animate-float-fast">
-                        <div className="w-44 h-44 md:w-52 md:h-52 rounded-full border-[6px] border-white shadow-2xl overflow-hidden ring-1 ring-gray-100 group-hover:scale-105 transition-all">
-                            <Image src="/coffee.png" alt="Premium Coffee" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                        <div className="w-44 h-44 md:w-52 md:h-52 rounded-full border-[6px] border-white shadow-2xl overflow-hidden relative ring-1 ring-gray-100 group-hover:scale-105 transition-all">
+                            <Image
+                                src="/coffee.png"
+                                alt="Premium Coffee"
+                                fill
+                                sizes="(min-width: 1024px) 208px, 176px"
+                                className="object-cover group-hover:scale-110 transition-transform duration-700"
+                            />
                         </div>
                     </div>
 
                     {/* Item 4: Burger (New Addition for completeness) */}
                     <div className="absolute top-[50%] right-[50%] z-10 group animate-float-slow opacity-80 blur-[2px] hover:blur-0 hover:opacity-100 transition-all duration-500">
-                        <div className="w-36 h-36 md:w-44 md:h-44 rounded-full border-[4px] border-white shadow-xl overflow-hidden">
-                            <Image src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400" alt="Burger" fill className="object-cover" />
+                        <div className="w-36 h-36 md:w-44 md:h-44 rounded-full border-[4px] border-white shadow-xl overflow-hidden relative">
+                            <Image
+                                src="/burger.png"
+                                alt="Burger"
+                                fill
+                                sizes="(min-width: 1024px) 176px, 144px"
+                                className="object-cover"
+                            />
                         </div>
                     </div>
 
