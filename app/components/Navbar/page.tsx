@@ -53,14 +53,14 @@ const Navbar = () => {
             {/* Desktop Nav Links */}
             <nav className="hidden lg:flex items-center gap-8 mr-4">
 
-              <Link href="/menu" className="text-sm font-bold text-gray-600 hover:text-primary-orange transition-colors">Menu</Link>
+              <Link href="/pages/menu" className="text-sm font-bold text-gray-600 hover:text-primary-orange transition-colors">Menu</Link>
               {/* <Link href="/offers" className="relative text-sm font-bold text-gray-600 hover:text-primary-orange transition-colors">
                 Offers
                 <span className="absolute -top-1 -right-2 h-2 w-2 bg-red-500 rounded-full animate-ping"></span>
                 <span className="absolute -top-1 -right-2 h-2 w-2 bg-red-500 rounded-full"></span>
               </Link> */}
 
-              <Link href="/about" className="text-sm font-bold text-gray-600 hover:text-primary-orange transition-colors">About</Link>
+              <Link href="/pages/about" className="text-sm font-bold text-gray-600 hover:text-primary-orange transition-colors">About</Link>
             </nav>
 
             {/* Cart Button */}
@@ -73,10 +73,10 @@ const Navbar = () => {
 
             {/* User Account / Profile */}
             <div className="flex items-center gap-4 pl-2 border-l border-gray-100">
-              <Link href="/components/SignIn?mode=login" className="hidden sm:block text-sm font-black text-gray-700 hover:text-primary-orange transition-colors px-2">
+              <Link href="/pages/SignIn?mode=login" className="hidden sm:block text-sm font-black text-gray-700 hover:text-primary-orange transition-colors px-2">
                 Sign In
               </Link>
-              <Link href="/components/SignIn?mode=register" className="px-6 py-3 bg-primary-orange text-white text-sm font-black rounded-2xl shadow-xl shadow-primary-orange/30 hover:bg-secondary-orange hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 uppercase tracking-wider">
+              <Link href="/pages/SignIn?mode=register" className="px-6 py-3 bg-primary-orange text-white text-sm font-black rounded-2xl shadow-xl shadow-primary-orange/30 hover:bg-secondary-orange hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 uppercase tracking-wider">
                 Register
               </Link>
             </div>

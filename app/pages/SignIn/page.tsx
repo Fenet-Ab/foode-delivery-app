@@ -19,7 +19,7 @@ const AuthContent = () => {
     }, [mode]);
 
     return (
-        <div className="min-h-screen bg-[#FDFCFB] flex items-center justify-center p-4 md:p-8 font-sans">
+        <div className="min-h-screen bg-[#FDFCFB] flex items-center justify-center pt-28 pb-12 px-4 md:px-8 font-sans">
             <div className={`max-w-6xl w-full bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] overflow-hidden flex flex-col ${isLogin ? 'md:flex-row' : 'md:flex-row-reverse'} min-h-[700px] border border-gray-100 relative transition-all duration-700`}>
                 
                 {/* Back to Home Button (Universal) */}
@@ -37,6 +37,7 @@ const AuthContent = () => {
                         src={isLogin ? "/auth_bg.png" : "/register_bg.png"} 
                         alt="Delicious Food" 
                         fill 
+                        sizes="50vw"
                         className="object-cover transition-transform duration-1000 group-hover:scale-110"
                         priority
                     />

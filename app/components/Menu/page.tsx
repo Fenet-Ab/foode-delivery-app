@@ -1,142 +1,173 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import FoodCard from '@/app/components/FoodCard/page';
-import { useSearch } from "@/app/contexts/SearchContext";
+import { useSearch } from '@/app/contexts/SearchContext';
 
-const Menu = () => {
-    const [activeCategory, setActiveCategory] = useState('All');
-    const { searchQuery, setSearchQuery } = useSearch();
+const DEFAULT_FOOD_ITEMS = [
+    {
+        id: 1,
+        name: 'Special Shiro',
+        category: 'Traditional',
+        price: 12.50,
+        image: '/shiro.png',
+        description: 'Slow-cooked traditional chickpea stew with authentic spices.',
+        rating: 4.8
+    },
+    {
+        id: 2,
+        name: 'Premium Roast Coffee',
+        category: 'Coffee',
+        price: 4.90,
+        image: '/coffee.png',
+        description: 'Freshly ground Ethiopian arabica beans, roasted to perfection.',
+        rating: 4.9
+    },
+    {
+        id: 3,
+        name: 'Hero Rice Platter',
+        category: 'Rice Platters',
+        price: 15.20,
+        image: '/hero_rice.png',
+        description: 'Fragrant basmati rice served with seasonal vegetables and meat.',
+        rating: 4.7
+    },
+    {
+        id: 4,
+        name: 'Ultimate Blaze Burger',
+        category: 'Burgers',
+        price: 13.50,
+        image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400',
+        description: 'Double beef patty with spicy jalapeños and melted cheddar.',
+        rating: 4.6
+    },
+    {
+        id: 5,
+        name: 'Classic Cheeseburger',
+        category: 'Burgers',
+        price: 10.90,
+        image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=400',
+        description: 'Juicy beef patty with classic cheddar and fresh vegetables.',
+        rating: 4.5
+    },
+    {
+        id: 6,
+        name: 'Iced Caramel Latte',
+        category: 'Coffee',
+        price: 5.50,
+        image: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=400',
+        description: 'Chilled espresso with creamy milk and rich caramel drizzle.',
+        rating: 4.8
+    }
+];
 
-    const categories = [
-        { name: 'All', icon: '🍽️' },
-        { name: 'Traditional', icon: '🍲' },
-        { name: 'Rice Platters', icon: '🍚' },
-        { name: 'Burgers', icon: '🍔' },
-        { name: 'Coffee', icon: '☕' },
-        { name: 'Desserts', icon: '🧁' },
-    ];
+const CATEGORIES = [
+    { name: 'All', image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400' },
+    { name: 'Traditional', image: '/shiro.png' },
+    { name: 'Rice Platters', image: '/hero_rice.png' },
+    { name: 'Burgers', image: '/burger.png' },
+    { name: 'Coffee', image: '/coffee.png' },
+    { name: 'Desserts', image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400' },
+];
 
-    const foodItems = [
-        {
-            id: 1,
-            name: 'Special Shiro',
-            category: 'Traditional',
-            price: 12.50,
-            image: '/shiro.png',
-            description: 'Slow-cooked traditional chickpea stew with authentic spices.',
-            rating: 4.8
-        },
-        {
-            id: 2,
-            name: 'Premium Roast Coffee',
-            category: 'Coffee',
-            price: 4.90,
-            image: '/coffee.png',
-            description: 'Freshly ground Ethiopian arabica beans, roasted to perfection.',
-            rating: 4.9
-        },
-        {
-            id: 3,
-            name: 'Hero Rice Platter',
-            category: 'Rice Platters',
-            price: 15.20,
-            image: '/hero_rice.png',
-            description: 'Fragrant basmati rice served with seasonal vegetables and meat.',
-            rating: 4.7
-        },
-        {
-            id: 4,
-            name: 'Ultimate Blaze Burger',
-            category: 'Burgers',
-            price: 13.50,
-            image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400',
-            description: 'Double beef patty with spicy jalapeños and melted cheddar.',
-            rating: 4.6
-        },
-        {
-            id: 5,
-            name: 'Classic Cheeseburger',
-            category: 'Burgers',
-            price: 10.90,
-            image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=400',
-            description: 'Juicy beef patty with classic cheddar and fresh vegetables.',
-            rating: 4.5
-        },
-        {
-            id: 6,
-            name: 'Iced Caramel Latte',
-            category: 'Coffee',
-            price: 5.50,
-            image: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=400',
-            description: 'Chilled espresso with creamy milk and rich caramel drizzle.',
-            rating: 4.8
-        }
-    ];
+export type MenuProps = {
+    /** When false, only header + category row (e.g. full menu page supplies its own grid). Default true. */
+    showFoodGrid?: boolean;
+    activeCategory?: string;
+    onCategoryChange?: (category: string) => void;
+};
 
-    const filteredItems = foodItems.filter(item => {
+const Menu = ({
+    showFoodGrid = true,
+    activeCategory: activeCategoryProp,
+    onCategoryChange,
+}: MenuProps) => {
+    const [internalCategory, setInternalCategory] = useState('All');
+    const activeCategory = activeCategoryProp ?? internalCategory;
+    const setActiveCategory = onCategoryChange ?? setInternalCategory;
+
+    const { searchQuery } = useSearch();
+
+    const filteredItems = DEFAULT_FOOD_ITEMS.filter((item) => {
         const matchesCategory = activeCategory === 'All' || item.category === activeCategory;
         const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
         return matchesCategory && matchesSearch;
     });
 
+    const ringOffsetClass = 'ring-offset-[#FDFCFB]';
+
     return (
-        <section className="py-24 bg-white min-h-screen">
-            <div className="max-w-7xl mx-auto px-6">
-                
-                {/* Header & Search */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
-                    <div className="flex flex-col gap-2 transition-all duration-700">
-                        <span className="text-primary-orange font-black uppercase tracking-[0.3em] text-xs">Our Menu</span>
-                        <h2 className="text-5xl md:text-6xl font-black text-gray-900 tracking-tighter uppercase italic">
-                            Delicious <span className="text-primary-orange">Selection</span>
-                        </h2>
+        <section className="pt-28 md:pt-36 pb-4 bg-[#FDFCFB]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <header className="mb-10 md:mb-12">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-4">
+                        Explore our menu
+                    </h2>
+                    <p className="text-gray-600 text-base md:text-lg max-w-2xl leading-relaxed">
+                        Choose from a diverse menu featuring a delectable array of dishes. Our mission is to satisfy
+                        your cravings and elevate your dining experience, one delicious meal at a time.
+                    </p>
+                    <div className="mt-10 border-b border-gray-200/90" aria-hidden />
+                </header>
+
+                <div className="w-full overflow-x-auto overflow-y-visible pb-6 mb-4 -mx-1 px-1 no-scrollbar scroll-smooth">
+                    <div
+                        className="flex flex-nowrap items-start justify-start lg:justify-between gap-8 sm:gap-10 md:gap-12 py-2 min-w-max lg:min-w-0 lg:w-full"
+                        role="list"
+                    >
+                        {CATEGORIES.map((cat) => (
+                            <button
+                                key={cat.name}
+                                type="button"
+                                onClick={() => setActiveCategory(cat.name)}
+                                className="group flex shrink-0 flex-col items-center gap-3 px-1 min-w-[76px] max-w-[140px] text-center transition-colors"
+                                role="listitem"
+                            >
+                                <div
+                                    className={`relative h-20 w-20 sm:h-24 sm:w-24 rounded-full overflow-hidden bg-gray-50 shadow-md ring transition-all duration-300 ${activeCategory === cat.name
+                                        ? `ring-2 ring-primary-orange ring-offset-2 ${ringOffsetClass} shadow-lg`
+                                        : 'ring-1 ring-gray-200/80 group-hover:ring-gray-300 group-hover:shadow-lg'
+                                        }`}
+                                >
+                                    <Image
+                                        src={cat.image}
+                                        alt={cat.name}
+                                        fill
+                                        sizes="(max-width: 640px) 80px, 96px"
+                                        className="object-cover"
+                                    />
+                                </div>
+                                <span
+                                    className={`text-sm font-medium leading-tight transition-colors ${activeCategory === cat.name
+                                        ? 'text-primary-orange'
+                                        : 'text-gray-500 group-hover:text-gray-800'
+                                        }`}
+                                >
+                                    {cat.name}
+                                </span>
+                            </button>
+                        ))}
                     </div>
+                </div>
 
-                    {/* Search Bar */}
-                    <div className="relative w-full max-w-md group">
-                        <input 
-                            type="text" 
-                            placeholder="What are you craving today?" 
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-3xl text-sm text-gray-900 font-bold focus:outline-none focus:ring-4 focus:ring-primary-orange/10 focus:bg-white focus:border-primary-orange/30 transition-all placeholder:text-gray-400"
-                        />
-                        <svg className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary-orange transition-colors" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                {showFoodGrid && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 pb-20">
+                        {filteredItems.length > 0 ? (
+                            filteredItems.map((item) => (
+                                <FoodCard key={item.id} dish={item as any} />
+                            ))
+                        ) : (
+                            <div className="col-span-full py-20 text-center flex flex-col items-center gap-4">
+                                <span className="text-6xl opacity-20" aria-hidden>🔍</span>
+                                <p className="text-gray-500 font-medium text-sm sm:text-base max-w-md">
+                                    No items found matching your craving.
+                                </p>
+                            </div>
+                        )}
                     </div>
-                </div>
-
-                {/* Categories Wrapper */}
-                <div className="flex items-center gap-4 mb-12 overflow-x-auto pb-4 no-scrollbar">
-                    {categories.map((cat) => (
-                        <button
-                            key={cat.name}
-                            onClick={() => setActiveCategory(cat.name)}
-                            className={`flex items-center gap-3 px-8 py-4 rounded-2xl font-black uppercase text-xs tracking-widest whitespace-nowrap transition-all duration-300 ${
-                                activeCategory === cat.name 
-                                ? 'bg-primary-orange text-white shadow-xl shadow-primary-orange/30 -translate-y-1' 
-                                : 'bg-gray-50 text-gray-400 border border-gray-100 hover:bg-white hover:border-primary-orange/30 hover:text-gray-600'
-                            }`}
-                        >
-                            <span className="text-lg">{cat.icon}</span>
-                            {cat.name}
-                        </button>
-                    ))}
-                </div>
-
-                {/* Food Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-                    {filteredItems.length > 0 ? (
-                        filteredItems.map((item) => (
-                            <FoodCard key={item.id} dish={item as any} />
-                        ))
-                    ) : (
-                        <div className="col-span-full py-20 text-center flex flex-col items-center gap-4">
-                            <span className="text-6xl opacity-20">🔍</span>
-                            <p className="text-gray-400 font-bold uppercase tracking-widest">No items found matching your craving.</p>
-                        </div>
-                    )}
-                </div>
+                )}
             </div>
         </section>
     );

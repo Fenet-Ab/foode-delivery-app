@@ -24,7 +24,7 @@ const Footer = () => {
                   className="transform group-hover:scale-110 transition-transform duration-500"
                 />
               </div>
-              <span className="text-2xl font-black tracking-tight text-white uppercase italic">
+              <span className="text-2xl font-black tracking-tight text-white uppercase ">
                 Food<span className="text-primary-orange">Swift</span>
               </span>
             </Link>
@@ -50,7 +50,7 @@ const Footer = () => {
 
           {/* Quick Links Column */}
           <div className="flex flex-col gap-6">
-            <h4 className="text-lg font-black uppercase tracking-widest text-white italic underline decoration-primary-orange decoration-4 underline-offset-8">
+            <h4 className="text-lg font-black uppercase tracking-widest text-white  decoration-4 ">
               Explore
             </h4>
             <nav className="flex flex-col gap-4 text-gray-400">
@@ -63,7 +63,7 @@ const Footer = () => {
 
           {/* Business Hours Column */}
           <div className="flex flex-col gap-6">
-            <h4 className="text-lg font-black uppercase tracking-widest text-white italic underline decoration-primary-orange decoration-4 underline-offset-8">
+            <h4 className="text-lg font-black uppercase tracking-widest text-white   decoration-4 ">
               Open Hours
             </h4>
             <div className="flex flex-col gap-4 text-gray-400">
@@ -83,7 +83,7 @@ const Footer = () => {
 
           {/* Contact Column */}
           <div className="flex flex-col gap-6">
-            <h4 className="text-lg font-black uppercase tracking-widest text-white italic underline decoration-primary-orange decoration-4 underline-offset-8">
+            <h4 className="text-lg font-black uppercase tracking-widest text-white  decoration-4 ">
               Contact Us
             </h4>
             <div className="flex flex-col gap-5">
