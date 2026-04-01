@@ -23,8 +23,8 @@ const Hero = () => {
 
                     <div className="flex flex-col gap-4">
                         <h1 className="flex flex-col">
-                            <span className="text-gray-400 text-3xl font-bold uppercase tracking-widest leading-none mb-2">Deliciously Crafted</span>
-                            <span className="text-5xl md:text-[7rem] font-black text-gray-900 leading-[0.8] tracking-tighter uppercase drop-shadow-sm">
+                            <span className="text-gray-400 text-2xl font-bold uppercase tracking-widest leading-none mb-2">Deliciously Crafted</span>
+                            <span className="text-4xl md:text-[5rem] font-black text-gray-900 leading-[0.85] tracking-tighter uppercase drop-shadow-sm">
                                 Special <br />
                                 <span className="text-primary-orange italic">MENU</span>
                             </span>

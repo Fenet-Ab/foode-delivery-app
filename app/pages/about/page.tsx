@@ -33,7 +33,7 @@ const AboutPage = () => {
                             <span className="text-primary-orange font-black uppercase tracking-[0.35em] text-[10px] sm:text-[11px] px-4 py-2 bg-orange-50/90 rounded-full inline-block border border-primary-orange/10 shadow-sm">
                                 Our culinary philosophy
                             </span>
-                            <h1 className="text-[clamp(2.5rem,8vw,5.5rem)] lg:text-[clamp(3rem,5.5vw,5rem)] font-black text-gray-900 uppercase tracking-tighter leading-[0.92]">
+                            <h1 className="text-[clamp(2.5rem,6vw,4.5rem)] font-black text-gray-900 uppercase tracking-tighter leading-[0.92]">
                                 Crafting <br />
                                 <span className="italic text-primary-orange">Excellence</span> <br />
                                 <span className="text-gray-800">At Home</span>

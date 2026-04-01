@@ -54,7 +54,7 @@ const CartPage = () => {
                   <li className="text-primary-orange">Cart</li>
                 </ol>
               </nav>
-              <h1 className="text-5xl font-black text-gray-900 tracking-tighter uppercase leading-none">
+              <h1 className="text-4xl font-black text-gray-900 tracking-tighter uppercase leading-none">
                 Your <span className="text-primary-orange">Cart</span>
               </h1>
             </div>

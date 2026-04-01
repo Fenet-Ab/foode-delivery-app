@@ -41,7 +41,7 @@ const OffersPage = ({ isSection = false }: { isSection?: boolean }) => {
       {!isSection && (
         <div className="pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col items-center text-center relative">
           <span className="text-primary-orange font-black uppercase tracking-[0.5em] text-[10px] mb-6 animate-fade-in-down">Exclusive Privileges</span>
-          <h1 className="text-5xl md:text-8xl font-black text-gray-900 mb-8 uppercase tracking-tighter leading-none italic">
+          <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-8 uppercase tracking-tighter leading-none italic">
             Gourmet <span className="text-primary-orange">Rewards</span>
           </h1>
           <div className="h-1.5 w-32 bg-primary-orange rounded-full mb-10"></div>
@@ -71,7 +71,7 @@ const OffersPage = ({ isSection = false }: { isSection?: boolean }) => {
                     )}
                 </div>
                 
-                <p className={`text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-6 ${offer.bg.includes('bg-white') ? 'text-gray-900' : 'text-white'}`}>
+                <p className={`text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-6 ${offer.bg.includes('bg-white') ? 'text-gray-900' : 'text-white'}`}>
                     {offer.discount}
                 </p>
                 <p className={`text-sm font-medium leading-relaxed max-w-md ${offer.bg.includes('bg-white') ? 'text-gray-400' : 'text-white/70'}`}>

@@ -101,15 +101,21 @@ const Menu = ({
         <section className="pt-28 md:pt-36 pb-4 bg-[#FDFCFB]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                <header className="mb-10 md:mb-12">
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-4">
-                        Explore our menu
+                <header className="mb-16 flex flex-col items-center lg:items-start transition-all duration-700 animate-in fade-in slide-in-from-bottom-8">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-orange/5 border border-primary-orange/20 mb-8">
+                        <span className="text-primary-orange text-[9px] font-black uppercase tracking-[0.4em] leading-none">Curated Cuisine</span>
+                    </div>
+
+                    <h2 className="text-4xl md:text-5xl font-black text-gray-900 leading-[0.95] tracking-tighter uppercase mb-6 text-center lg:text-left">
+                        Explore Our <br />
+                        <span className="text-primary-orange italic">Seasonal</span> Menu
                     </h2>
-                    <p className="text-gray-600 text-base md:text-lg max-w-2xl leading-relaxed">
-                        Choose from a diverse menu featuring a delectable array of dishes. Our mission is to satisfy
-                        your cravings and elevate your dining experience, one delicious meal at a time.
+                    
+                    <div className="h-1.5 w-24 bg-primary-orange rounded-full mb-8"></div>
+
+                    <p className="text-gray-500 text-sm md:text-base font-medium max-w-xl leading-relaxed text-center lg:text-left uppercase tracking-widest opacity-80">
+                        A celebration of traditional flavors and modern techniques. Every dish tells a story of passion and precision.
                     </p>
-                    <div className="mt-10 border-b border-gray-200/90" aria-hidden />
                 </header>
 
                 <div className="w-full overflow-x-auto overflow-y-visible pb-6 mb-4 -mx-1 px-1 no-scrollbar scroll-smooth">

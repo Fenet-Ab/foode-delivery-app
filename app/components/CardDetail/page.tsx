@@ -146,7 +146,7 @@ const DetailContent = () => {
                         {/* Info Section */}
                         <div className="space-y-12">
                             <div className="space-y-4">
-                                <h1 className="text-4xl lg:text-7xl font-black text-gray-900 uppercase tracking-tighter leading-none italic break-words">
+                                <h1 className="text-3xl lg:text-5xl font-black text-gray-900 uppercase tracking-tighter leading-none italic break-words">
                                     {dish.name.split(' ').slice(0, -1).join(' ')} <br className="hidden lg:block" />
                                     <span className="text-primary-orange">{dish.name.split(' ').slice(-1)}</span>
                                 </h1>
