@@ -4,6 +4,7 @@ import React, { useState, Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
+import { useCart } from '@/app/contexts/CartContext';
 import Footer from '../Footer/page';
 
 const dishes = [
@@ -86,6 +87,7 @@ const DetailContent = () => {
     const id = searchParams.get('id');
     const [quantity, setQuantity] = useState(1);
     const [isLiked, setIsLiked] = useState(false);
+    const { addToCart } = useCart();
 
     const dish = dishes.find(d => d.id === Number(id)) || dishes[0];
 
@@ -210,7 +212,16 @@ const DetailContent = () => {
                                 </div>
                             </div>
 
-                            <button className="w-full py-6 mb-12 bg-gray-900 text-white rounded-[2rem] font-black uppercase tracking-[0.4em] text-sm shadow-2xl hover:bg-primary-orange hover:-translate-y-1 transition-all duration-500 group relative overflow-hidden">
+                            <button 
+                                onClick={() => addToCart({
+                                    id: dish.id,
+                                    name: dish.name,
+                                    price: dish.price,
+                                    image: dish.image,
+                                    category: dish.category
+                                }, quantity)}
+                                className="w-full py-6 mb-12 bg-gray-900 text-white rounded-[2rem] font-black uppercase tracking-[0.4em] text-sm shadow-2xl hover:bg-primary-orange hover:-translate-y-1 transition-all duration-500 group relative overflow-hidden"
+                            >
                                 <span className="relative z-10">Add to Sensory Cart</span>
                                 <div className="absolute inset-0 bg-primary-orange translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
                             </button>

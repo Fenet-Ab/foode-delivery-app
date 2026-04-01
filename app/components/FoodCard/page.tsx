@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useCart } from '@/app/contexts/CartContext';
 
 interface FoodCardProps {
   dish: {
@@ -20,6 +21,7 @@ const FoodCard: React.FC<FoodCardProps> = ({ dish }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [rating, setRating] = useState(dish.rating);
   const [hoverRating, setHoverRating] = useState(0);
+  const { addToCart } = useCart();
 
   return (
     <div className="group relative bg-white rounded-[3rem] p-4 transition-all duration-700 hover:shadow-[0_40px_100px_rgba(0,0,0,0.08)] hover:-translate-y-2 border border-transparent hover:border-gray-50 flex flex-col h-full">
@@ -82,7 +84,16 @@ const FoodCard: React.FC<FoodCardProps> = ({ dish }) => {
         </div>
 
         {/* Floating Add to Cart - Plus Button */}
-        <button className="absolute bottom-6 right-6 w-16 h-16 bg-white rounded-3xl shadow-2xl flex items-center justify-center text-gray-900 hover:bg-primary-orange hover:text-white transition-all duration-500 hover:scale-110 active:scale-90 group/btn overflow-hidden z-20">
+        <button 
+          onClick={() => addToCart({
+            id: dish.id,
+            name: dish.name,
+            price: dish.price,
+            image: dish.image,
+            category: dish.category
+          })}
+          className="absolute bottom-6 right-6 w-16 h-16 bg-white rounded-3xl shadow-2xl flex items-center justify-center text-gray-900 hover:bg-primary-orange hover:text-white transition-all duration-500 hover:scale-110 active:scale-90 group/btn overflow-hidden z-20"
+        >
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" className="relative z-10"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
             <div className="absolute inset-0 bg-primary-orange translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500"></div>
         </button>

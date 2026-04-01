@@ -4,9 +4,11 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearch } from "@/app/contexts/SearchContext";
+import { useCart } from "@/app/contexts/CartContext";
 
 const Navbar = () => {
     const { setSearchQuery } = useSearch();
+    const { itemCount } = useCart();
 
     return (
         <nav className="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-xl border-b border-orange-100 shadow-sm transition-all duration-300">
@@ -64,12 +66,14 @@ const Navbar = () => {
             </nav>
 
             {/* Cart Button */}
-            <button className="relative p-3 bg-orange-50 text-primary-orange rounded-xl hover:bg-primary-orange hover:text-white transition-all duration-300 group shadow-sm">
+            <Link href="/pages/Cart" className="relative p-3 bg-orange-50 text-primary-orange rounded-xl hover:bg-primary-orange hover:text-white transition-all duration-300 group shadow-sm">
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="8" cy="21" r="1" /><circle cx="19" cy="21" r="1" /><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" /></svg>
-              <span className="absolute -top-2 -right-2 h-6 w-6 bg-secondary-orange text-white text-[10px] font-bold flex items-center justify-center rounded-full border-4 border-white shadow-md group-hover:scale-110 transition-transform">
-                2
-              </span>
-            </button>
+              {itemCount > 0 && (
+                <span className="absolute -top-2 -right-2 h-6 w-6 bg-secondary-orange text-white text-[10px] font-bold flex items-center justify-center rounded-full border-4 border-white shadow-md group-hover:scale-110 transition-transform">
+                  {itemCount}
+                </span>
+              )}
+            </Link>
 
             {/* User Account / Profile */}
             <div className="flex items-center gap-4 pl-2 border-l border-gray-100">

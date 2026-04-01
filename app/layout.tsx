@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
 
 import Navbar from "@/app/components/Navbar/page";
 import { SearchProvider } from "@/app/contexts/SearchContext";
+import { CartProvider } from "@/app/contexts/CartContext";
 
 export default function RootLayout({
   children,
@@ -23,10 +24,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col pt-20">
-        <SearchProvider>
-          <Navbar />
-          <main className="flex-1">{children}</main>
-        </SearchProvider>
+        <CartProvider>
+          <SearchProvider>
+            <Navbar />
+            <main className="flex-1">{children}</main>
+          </SearchProvider>
+        </CartProvider>
       </body>
     </html>
   );
