@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useCart } from '@/app/contexts/CartContext';
+import TopFooter from '../TopFooter/page';
 import Footer from '../Footer/page';
 
 const dishes = [
@@ -229,6 +230,7 @@ const DetailContent = () => {
                     </div>
                 </div>
             </main>
+            <TopFooter />
             <Footer />
         </div>
     );

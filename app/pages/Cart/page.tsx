@@ -4,6 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCart } from '@/app/contexts/CartContext';
+import TopFooter from '@/app/components/TopFooter/page';
 import Footer from '@/app/components/Footer/page';
 
 const CartPage = () => {
@@ -32,6 +33,7 @@ const CartPage = () => {
             Explore Menu
           </Link>
         </div>
+        <TopFooter />
         <Footer />
       </div>
     );
@@ -193,6 +195,7 @@ const CartPage = () => {
           </div>
         </div>
       </div>
+      <TopFooter />
       <Footer />
     </div>
   );

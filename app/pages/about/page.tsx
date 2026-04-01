@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import OffersPage from '../../offers/page';
 import Image from 'next/image';
+import TopFooter from '../../components/TopFooter/page';
 import Footer from '../../components/Footer/page';
 
 const AboutPage = () => {
@@ -189,6 +190,7 @@ const AboutPage = () => {
                     }
                 }
             `}</style>
+            <TopFooter />
             <Footer />
         </div>
     );

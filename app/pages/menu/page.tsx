@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import FoodCard from '@/app/components/FoodCard/page';
 import { useSearch } from '@/app/contexts/SearchContext';
 import Menu from '@/app/components/Menu/page';
+import TopFooter from '@/app/components/TopFooter/page';
+import Footer from '@/app/components/Footer/page';
 // import Menu from '../../components/Menu/page';
 
 const dishes = [
@@ -103,6 +105,8 @@ const MenuPage = () => {
           </div>
         )}
       </div>
+      <TopFooter />
+      <Footer />
     </div>
   );
 };

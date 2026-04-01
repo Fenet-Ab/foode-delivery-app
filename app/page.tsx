@@ -1,5 +1,6 @@
 import Hero from "@/app/components/Hero/page";
 import Menu from "@/app/components/Menu/page";
+import TopFooter from "@/app/components/TopFooter/page";
 import Footer from "@/app/components/Footer/page";
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <Menu />
+        <TopFooter />
         <Footer />
         
         {/* Additional sections */}
